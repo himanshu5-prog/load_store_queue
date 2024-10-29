@@ -12,6 +12,7 @@ struct LSQ_Entry {
     int startCycle;
     int endCycle;
     Stage stage;
+    bool ready;
 };
 
 struct Cache_Entry{
@@ -30,5 +31,6 @@ struct Instruction_Queue_Entry{
     Opcode opcode;
     int address;
     int data;
+    int id;
 };
 #endif

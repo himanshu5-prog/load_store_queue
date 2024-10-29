@@ -2,9 +2,9 @@
 #define __LOAD_STORE_QUEUE__
 
 #include "../Entry/entry.hh"
-
+#include <deque>
 class Load_Store_Queue{
-    LSQ_Entry entry[16];
+    std :: deque<LSQ_Entry> entry;
     int head; // entry to consider for execution
     int tail; // entry where new entry needs to be added
     int cycleCount;
@@ -22,7 +22,7 @@ class Load_Store_Queue{
         void increment_cycle_count();
         //----------------------------
 
-        void addToQueue(LSQ_Entry e);
+        bool addToQueue(LSQ_Entry e);
         bool canAddEntry();
         void setInstancename(std :: string name);
 };

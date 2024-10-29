@@ -35,21 +35,24 @@ void Load_Store_Queue :: setDebugMode(){
     debugMode = true;
 }
 
-void Load_Store_Queue :: addToQueue(LSQ_Entry e){
+bool Load_Store_Queue :: addToQueue(LSQ_Entry e){
     if (canAddEntry()){
         entry[tail] = e;
         increment_tail();
+        return true;
     } else {
         if (debugMode){
             std :: cout << "Queue: " << instanceName << ": addToQueue : Can't enter entry to queue because it is full. Trying to add entry: \n";
         }
+
+        return false;
     }
 }
 
 bool Load_Store_Queue :: canAddEntry(){
-   if ( entry[tail].valid){
-    return false;
-   }
+    if (entry.size() == QueueSize ){
+        return false;
+    }
 
-   return true;
+    return true;
 }

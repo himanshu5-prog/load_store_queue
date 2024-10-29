@@ -4,6 +4,7 @@
 #include <iostream>
 #define Load_Queue_Size 8
 #define Store_Queue_Size 8
+#define QueueSize 8
 
 
 enum Opcode {
@@ -38,7 +39,7 @@ namespace Load_Pipeline_Latency {
 }
 
 namespace Store_Pipeline_Latency {
-    const int DISPATCH_TO_EXECUTE = 1;
+    const int DISPATCH_TO_EXECUTE = 2;
     const int EXECUTE_TO_RETIRE_MISS = 12;
     const int EXECUTE_TO_RETIRE_HIT = 2;
 }

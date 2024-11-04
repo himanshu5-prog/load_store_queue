@@ -25,6 +25,8 @@ class Load_Store_Queue{
         bool addToQueue(LSQ_Entry e);
         bool canAddEntry();
         void setInstancename(std :: string name);
+        void updateStateLoadQ();
+        void updateStateStoreQ();
 };
 
 #endif

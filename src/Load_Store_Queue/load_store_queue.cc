@@ -37,16 +37,30 @@ void Load_Store_Queue :: setDebugMode(){
 
 bool Load_Store_Queue :: addToQueue(LSQ_Entry e){
     if (canAddEntry()){
-        entry[tail] = e;
-        increment_tail();
+
+        if (debugMode){
+            std :: cout << "Queue: " << instanceName << ": adding entry: \n";
+            printLSQ_Entry(e); 
+        }
+
+        e.startCycle = cycleCount;
+        if (instanceName == "Load Queue"){
+            e.stage = LD_DISPATCH;
+            e.endCycle = cycleCount + Load_Pipeline_Latency ::DISPATCH_TO_ADDR_GEN;
+        } else if ( instanceName == "Store Queue"){
+            e.stage = ST_DISPATCH;
+            e.endCycle = cycleCount + Store_Pipeline_Latency :: DISPATCH_TO_EXECUTE;
+        }
+        entry.push_back(e);
         return true;
     } else {
         if (debugMode){
-            std :: cout << "Queue: " << instanceName << ": addToQueue : Can't enter entry to queue because it is full. Trying to add entry: \n";
+            std :: cout << "Queue: " << instanceName << ": addToQueue : Can't enter entry to queue because it is full.\n";
         }
 
-        return false;
     }
+
+    return false;
 }
 
 bool Load_Store_Queue :: canAddEntry(){
@@ -55,4 +69,38 @@ bool Load_Store_Queue :: canAddEntry(){
     }
 
     return true;
+}
+/*
+enum Stage {
+    NONE=0,
+    //Stages of load instruction
+    LD_DISPATCH,
+    LD_ADDR_GEN,
+    LD_DISPATCH_TO_ADDR_GEN,
+    LD_EXECUTE,
+    LD_ADDRGEN_TO_EXECUTE,
+    LD_RETIRE,
+    LD_EXECUTE_TO_RETIRE,
+    //Stages of store instruction
+    ST_DISPATCH,
+    ST_DISPATCH_TO_EXECUTE,
+    ST_EXECUTE,
+    ST_RETIRE,
+    ST_EXECUTE_TO_RETIRE
+};
+*/
+void Load_Store_Queue :: updateStateLoadQ(){
+    std :: deque <LSQ_Entry> :: iterator  itr;
+    for (itr = entry.begin(); itr != entry.end(); ++itr){
+        if (itr->stage == LD_DISPATCH && cycleCount == itr->endCycle){
+            itr->stage = LD_ADDR_GEN;
+            itr->startCycle = cycleCount;
+            itr->endCycle = cycleCount + Load_Pipeline_Latency :: ADDRGEN_TO_EXECUTE;
+
+        }  
+    }
+}
+
+void Load_Store_Queue :: updateStateStoreQ(){
+
 }

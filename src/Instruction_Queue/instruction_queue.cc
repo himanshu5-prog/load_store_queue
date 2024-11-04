@@ -41,3 +41,7 @@ Instruction_Queue_Entry InstructionQueueDS :: getEntry(){
 void InstructionQueueDS :: popInstQ(){
     instructionQ.pop();
 }
+
+void InstructionQueueDS :: increment_cycle_count(){
+    cycleCount += 1;
+}

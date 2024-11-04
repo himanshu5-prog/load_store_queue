@@ -7,6 +7,7 @@
 
 class InstructionQueueDS{
     std :: queue <Instruction_Queue_Entry> instructionQ;
+    bool cycleCount;
 
     public:
         InstructionQueueDS(){};
@@ -15,6 +16,7 @@ class InstructionQueueDS{
 
         Instruction_Queue_Entry getEntry();
         void popInstQ();
+        void increment_cycle_count();
 
 };
 

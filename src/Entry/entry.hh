@@ -23,6 +23,11 @@ struct Cache_Entry{
     bool dirty;
 };
 
+struct SimpleCacheEntry {
+    int address;
+    int data;
+};
+
 void printLSQ_Entry( LSQ_Entry e);
 void printCache_Entry ( Cache_Entry e);
 

@@ -97,7 +97,15 @@ void Load_Store_Queue :: updateStateLoadQ(){
             itr->startCycle = cycleCount;
             itr->endCycle = cycleCount + Load_Pipeline_Latency :: ADDRGEN_TO_EXECUTE;
 
-        }  
+        }  else if ( itr ->stage == LD_ADDR_GEN && cycleCount == itr->endCycle){
+            //Check if we can go to execute stage
+            itr -> stage = LD_EXECUTE;
+            itr -> startCycle = cycleCount;
+
+            // check if we have cache hit or miss and update latency accordingly.
+            // Update cache if needed.
+            itr -> endCycle = cycleCount + Load_Pipeline_Latency :: EXECUTE_TO_RETIRE_HIT;
+        }
     }
 }
 

@@ -1,7 +1,7 @@
 #ifndef __INSTRUCTION_QUEUE__
 #define __INSTRUCTION_QUEUE__
 
-#include "../Common/common.hh"
+#include "../common/common.hh"
 #include "../Entry/entry.hh"
 #include <queue>
 

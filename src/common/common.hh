@@ -14,7 +14,7 @@ enum Opcode {
 };
 
 enum Stage {
-    NONE=0,
+    NOT_VALID=0,
     //Stages of load instruction
     LD_DISPATCH,
     LD_ADDR_GEN,
@@ -34,17 +34,17 @@ enum Stage {
 namespace Load_Pipeline_Latency {
     const int DISPATCH_TO_ADDR_GEN = 1;
     const int ADDRGEN_TO_EXECUTE = 1;
-    const int EXECUTE_TO_RETIRE_MISS = 10;
-    const int EXECUTE_TO_RETIRE_HIT = 2;
+    const int EXECUTE_TO_RETIRE_MISS = 20;
+    const int EXECUTE_TO_RETIRE_HIT = 4;
 }
 
 namespace Store_Pipeline_Latency {
     const int DISPATCH_TO_EXECUTE = 2;
-    const int EXECUTE_TO_RETIRE_MISS = 12;
+    const int EXECUTE_TO_RETIRE_MISS = 20;
     const int EXECUTE_TO_RETIRE_HIT = 2;
 }
 
 std :: string convertStage2String(Stage stage);
-
+std :: string convertOpcode2String(Opcode op);
 #endif
 

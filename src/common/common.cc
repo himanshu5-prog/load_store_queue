@@ -25,9 +25,18 @@ std :: string convertStage2String(Stage st){
         case 10:
             return "ST_EXECUTE";
         case 11:
-            return "ST_EXECUTE";
+            return "ST_RETIRE";
         case 12:
             return "ST_EXECUTE_TO_RETIRE";
 
+    }
+}
+
+std :: string convertOpcode2String(Opcode op){
+    switch (op){
+        case NONE: return "NONE";
+        case LOAD: return "LOAD";
+        case STORE: return "STORE";
+        default: return "NA-Check";
     }
 }

@@ -1,4 +1,5 @@
 g++ \
+-std=c++11 \
 src/mainFunc.cpp \
 src/system/system.cc \
 src/common/common.cc \

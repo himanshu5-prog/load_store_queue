@@ -43,6 +43,7 @@ int main(int argc, char* argv[]){
     sys.setMaxCycleCount(50);
     sys.setInstructionFile(fName);
     sys.run();
+    sys.printStats();
     
     return 0;
 }

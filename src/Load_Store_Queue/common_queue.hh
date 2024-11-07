@@ -32,6 +32,7 @@ class CommonQueue{
 
         void retireEntryHead();
         void printAllEntry();
+        void printStats();
 
         
 

@@ -96,4 +96,6 @@ void System :: printStats(){
     std :: cout << "store instruction count: " << stats.storeInstructionCount << "\n";
     std :: cout << "Total cycle count: " << stats.totalCycleCount << "\n";
     std :: cout << "####################################\n";
+
+    loadStoreQueue.printStats();
 }

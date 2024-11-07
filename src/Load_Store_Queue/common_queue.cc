@@ -182,7 +182,7 @@ int CommonQueue :: updateLoadEntry(int id, int addr){
             entry[id].data = data;
             entry[id].stage = LD_RETIRE;
             entry[id].startCycle = cycleCount;
-            entry[id].endCycle = cycleCount + 1;
+            entry[id].endCycle = entry[store_id].endCycle;
 
             if (debugMode){
                 std :: cout << "----------------------------------------------------------------------------------------------\n";
@@ -239,6 +239,12 @@ void CommonQueue :: retireEntryHead(){
     if (!isEmpty()){
         if (entry.front().stage == LD_RETIRE || entry.front().stage == ST_RETIRE){
             if (cycleCount >= entry.front().endCycle){
+
+                if (entry.front().stage == LD_RETIRE){
+                    stats.loadInstructionRetired += 1;
+                } else if (entry.front().stage == ST_RETIRE){
+                    stats.storeInstructionRetired += 1;
+                }
                 std :: cout << "Retiring the entry at cycle: " << cycleCount << "\n";
                 printLSQ_Entry(entry.front());
                 entry.pop_front();
@@ -259,4 +265,15 @@ void CommonQueue :: printAllEntry(){
         ++entry_id;
     }
      std :: cout << "-----------------------------------------------------------------\n";
+}
+
+void CommonQueue :: printStats(){
+
+    std :: cout << "######## Common Queue stats##########\n";
+    std :: cout << "Load memory access: " << stats.loadMemoryAccess << "\n";
+    std :: cout << "Store memory access: " << stats.storeMemoryAccess << "\n";
+    std :: cout << "Retired load count: " << stats.loadInstructionRetired << "\n";
+    std :: cout << "Retired store count: " << stats.storeInstructionRetired << "\n";
+    std :: cout << "Store to load forwarding count: " << stats.storeToLoadForwarding << "\n";
+    std :: cout << "###############################################\n";
 }

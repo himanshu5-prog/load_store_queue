@@ -4,6 +4,7 @@
 #include "../common/common.hh"
 #include "../Entry/entry.hh"
 #include <queue>
+#include <fstream>
 
 class InstructionQueueDS{
     std :: queue <Instruction_Queue_Entry> instructionQ;
@@ -17,7 +18,7 @@ class InstructionQueueDS{
         Instruction_Queue_Entry getEntry();
         void popInstQ();
         void increment_cycle_count();
-
+        void createInstructionQFile(std :: string fileName);
 };
 
 #endif

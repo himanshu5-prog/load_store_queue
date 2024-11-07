@@ -14,6 +14,7 @@ class System {
     int maxCycleCount;
     bool debugMode;
     std :: string instructionFile;
+    SystemStats stats;
 
     public:
         System();
@@ -24,7 +25,7 @@ class System {
         void setMaxCycleCount(int x) { maxCycleCount = x;}
         bool allBufferEmpty();
         void setInstructionFile(std :: string f);
-        void readInstructionFile();
+        void printStats();
 };
 
 #endif

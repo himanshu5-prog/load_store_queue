@@ -2,6 +2,9 @@
 #define _COMMON_
 
 #include <iostream>
+#include <vector>
+#include <string>
+#include <sstream>
 #define Load_Queue_Size 8
 #define Store_Queue_Size 8
 #define QueueSize 8
@@ -44,7 +47,38 @@ namespace Store_Pipeline_Latency {
     const int EXECUTE_TO_RETIRE_HIT = 2;
 }
 
+struct SystemStats{
+
+    int storeInstructionCount;
+    int loadInstructionCount;
+    int totalCycleCount;
+
+    SystemStats() {
+        storeInstructionCount = 0;
+        loadInstructionCount = 0;
+        totalCycleCount = 0;
+    } 
+};
+
+struct LoadStoreQueueStats {
+    int storeMemoryAccess;
+    int loadMemoryAccess;
+    int storeToLoadForwarding;
+    int storeInstructionRetired;
+    int loadInstructionRetired;
+
+    LoadStoreQueueStats(){
+        storeMemoryAccess = 0;
+        loadMemoryAccess = 0;
+        storeToLoadForwarding = 0;
+        storeInstructionRetired = 0;
+        loadInstructionRetired = 0;
+    }
+
+}; 
+
 std :: string convertStage2String(Stage stage);
 std :: string convertOpcode2String(Opcode op);
+std :: vector < std :: string> split_sentence(std::string s);
 #endif
 

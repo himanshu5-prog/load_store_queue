@@ -2,10 +2,14 @@
 
 System :: System (){
     cycleCount = 0;
-    instQ_DS.createInstructionQ();
+    //instQ_DS.createInstructionQ();
+    //instQ_DS.createInstructionQFile("Instruction/one_load_store_ind.txt");
     cycleCount = 0;
     maxCycleCount = 100;
     debugMode = false;
+    stats.loadInstructionCount = 0;
+    stats.storeInstructionCount = 0;
+    stats.totalCycleCount = 0;
 }
 
 void System :: run(){
@@ -25,6 +29,7 @@ void System :: run(){
         issue();
 
         if (allBufferEmpty()){
+            stats.totalCycleCount = cycleCount;
             break;
         }
         increment_cycle_count();
@@ -38,15 +43,22 @@ void System :: issue (){
         Instruction_Queue_Entry instEntry;
         instEntry = instQ_DS.getEntry();
         assert(instEntry.valid);
-        if (instEntry.opcode == LOAD && loadStoreQueue.canAddToEntry()){
-            // Adding entry to load queue
-            loadStoreQueue.addToQueue(instEntry.address, instEntry.data, instEntry.id ,LOAD);
-            instQ_DS.popInstQ();
 
-        } else if (instEntry.opcode == STORE && loadStoreQueue.canAddToEntry()){
-            //Adding entry to store queue
-            loadStoreQueue.addToQueue(instEntry.address, instEntry.data, instEntry.id, STORE);
-            instQ_DS.popInstQ();
+        if (loadStoreQueue.canAddToEntry()){
+            if (instEntry.opcode == LOAD){
+                // Adding entry to load queue
+                stats.loadInstructionCount += 1;
+                loadStoreQueue.addToQueue(instEntry.address, instEntry.data, instEntry.id ,LOAD);
+                instQ_DS.popInstQ();
+
+            } else if (instEntry.opcode == STORE){
+                //Adding entry to store queue
+                stats.storeInstructionCount += 1;
+                loadStoreQueue.addToQueue(instEntry.address, instEntry.data, instEntry.id, STORE);
+                instQ_DS.popInstQ();
+            }
+        } else {
+            std :: cout << "Load store queue is full. Can't add instruction. Cycle: " << cycleCount << "\n";
         }
     }
 }
@@ -72,4 +84,16 @@ bool System :: allBufferEmpty(){
     }
        
     return false;
+}
+
+void System :: setInstructionFile(std :: string f){
+    instQ_DS.createInstructionQFile(f);
+}
+
+void System :: printStats(){
+    std :: cout << "####### System Stats #############\n";
+    std :: cout << "load instruction count: " << stats.loadInstructionCount << "\n";
+    std :: cout << "store instruction count: " << stats.storeInstructionCount << "\n";
+    std :: cout << "Total cycle count: " << stats.totalCycleCount << "\n";
+    std :: cout << "####################################\n";
 }

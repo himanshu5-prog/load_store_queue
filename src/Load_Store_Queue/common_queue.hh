@@ -10,6 +10,7 @@ class CommonQueue{
     std :: string instanceName;
     int cycleCount;
     bool debugMode;
+    LoadStoreQueueStats stats;
 
     public:
         CommonQueue();

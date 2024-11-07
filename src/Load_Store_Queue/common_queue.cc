@@ -4,6 +4,11 @@ CommonQueue :: CommonQueue(){
     instanceName = "LoadStoreQueue";
     cycleCount = 0;
     debugMode = false;
+    stats.loadInstructionRetired = 0;
+    stats.loadMemoryAccess = 0;
+    stats.storeInstructionRetired = 0;
+    stats.storeMemoryAccess = 0;
+    stats.storeToLoadForwarding = 0;
 }
 
 void CommonQueue :: setDebugMode(){
@@ -100,6 +105,9 @@ void CommonQueue :: UpdateEntry(){
                     itr->stage = ST_RETIRE;
                     itr->startCycle = cycleCount;
                     itr->endCycle = cycleCount + Store_Pipeline_Latency :: EXECUTE_TO_RETIRE_MISS;
+                    //Updating stats
+                    stats.storeMemoryAccess += 1;
+                    //--------------------------
                     if (debugMode){
                         std ::  cout << instanceName << ":: UpdateEntry: Found Store entry. Changed stage from " << convertStage2String(prev_stage) 
                         << " to " << convertStage2String(itr->stage) << ", entry id: " << entry_id<< ", cycleCount: " << cycleCount << ", endCycleCount: " << 
@@ -174,7 +182,7 @@ int CommonQueue :: updateLoadEntry(int id, int addr){
             entry[id].data = data;
             entry[id].stage = LD_RETIRE;
             entry[id].startCycle = cycleCount;
-            entry[id].endCycle = cycleCount + Load_Pipeline_Latency :: EXECUTE_TO_RETIRE_MISS;
+            entry[id].endCycle = cycleCount + 1;
 
             if (debugMode){
                 std :: cout << "----------------------------------------------------------------------------------------------\n";
@@ -201,12 +209,14 @@ void CommonQueue :: updateAllLoadEntry(){
         if (itr -> opcode == LOAD && itr->stage == LD_EXECUTE && cycleCount >= itr->endCycle){
             if (foundPrevStore(entryId, itr->address)){
                 updateLoadEntry(entryId, itr->address);
+                stats.storeToLoadForwarding += 1;
 
             } else {
                 // Get from cache
                 itr->stage = LD_RETIRE;
                 itr->startCycle = cycleCount;
                 itr->endCycle = cycleCount + Load_Pipeline_Latency::EXECUTE_TO_RETIRE_MISS;
+                stats.loadMemoryAccess += 1;
             }
         }
         ++entryId;

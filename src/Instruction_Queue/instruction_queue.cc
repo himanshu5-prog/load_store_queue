@@ -57,24 +57,18 @@ void InstructionQueueDS :: createInstructionQFile(std ::string fileName){
         return;
     }
 
-    char *c;
     std :: vector < std :: string> words;
     int count=0;
     Opcode op;
     int addr, data, id;
-    bool val;
-    bool flag = false;
     Instruction_Queue_Entry inst;
     while (getline(readFile, line)){
-        //std :: vector < std :: string> split_sentence(std::string s);
         words = split_sentence(line);  
         
         for (auto w: words){
-          //  std :: cout << w <<", count: " << count << "\n";
             
             if (count == 0){
                 if (w == "LD"){
-                    val = true;
                     op = LOAD;
                 } else if ( w == "ST"){
                     op = STORE;

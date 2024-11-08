@@ -1,0 +1,32 @@
+#### Load store queue #########
+
+The system class consists of following components:
+
+1) Instruction queue : Has instructions in program order. During issue, instruction from instruction queue are moved to load queue.
+
+2) Load Queue: 
+
+- Contains all in-flight load and store instruction. Instruction stays in the queue until it is retired ( i.e it is written to memory). 
+
+- Stages of Store:
+
+   > Dispatch: Instruction is in load store queue
+   > Execute: The data is written to load-store queue.
+   > Retire: Cache is updated.
+
+- Stages of Load
+
+    > Dispatch
+    > Addr generation: Address is getting calculated
+    > Execute
+    > Retire
+
+- Every cycle, stages of load are updated in pipelined manner. The memory is implemented by adding latency after which the   instruction can be retired. Currently, we are not using any cache model in src/cache directory.
+
+- Every cycle, each entry in queue is updated depending on the state. However, only one instruction is retired every cycle. Each load instruction first look into older store and check if any store is on same address. If yes, the data is forwarded to load and load doesn't need to access memory. If there are multiple older stores are found with same address, then the latest store is considered.
+
+3) Compile command:
+    > source compile.tcl
+
+4) Running the simulation
+    - there are two command line argument: debug mode and instruction file

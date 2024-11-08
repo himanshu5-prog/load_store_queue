@@ -29,4 +29,7 @@ The system class consists of following components:
     > source compile.tcl
 
 4) Running the simulation
-    - there are two command line argument: debug mode and instruction file
+    > there are two command line argument: debug mode (-debug) and instruction file (-file <file path>).
+    > The instruction file should be in Indtruction directory.
+    >  Eg: ./lsq -debug 1 -file one_load_store_dep.txt
+        debug is set to 1 (by default set to 0). By default, file is set to multiple_store_load.txt

@@ -27,7 +27,10 @@ The system class consists of following components:
 
 3) Compile command:
     > source compile.tcl
-    > It can be compiled with make command. Type make in terminal to run compilation
+    > It can be compiled with make command.
+    > Compile step:
+        make 
+        make all
     > In order to clean up object file and executable, 'make clean' can be used.
 
 4) Running the simulation

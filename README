@@ -1,12 +1,12 @@
-#### Load store queue #########
+########## Load store queue ##############
 
 The system class consists of following components:
 
 1) Instruction queue : Has instructions in program order. During issue, instruction from instruction queue are moved to load queue.
 
-2) Load Queue: 
+2) Load Queue:
 
-- Contains all in-flight load and store instruction. Instruction stays in the queue until it is retired ( i.e it is written to memory). 
+- Contains all in-flight load and store instruction. Instruction stays in the queue until it is retired ( i.e it is written to memory)
 
 - Stages of Store:
 
@@ -25,7 +25,7 @@ The system class consists of following components:
 
 - Every cycle, each entry in queue is updated depending on the state. However, only one instruction is retired every cycle. Each load instruction first look into older store and check if any store is on same address. If yes, the data is forwarded to load and load doesn't need to access memory. If there are multiple older stores are found with same address, then the latest store is considered.
 
-3) Compile command:
+3)Compile command:
     > source compile.tcl
     > It can be compiled with make command.
     > Compile step:
@@ -33,8 +33,8 @@ The system class consists of following components:
         make all
     > In order to clean up object file and executable, 'make clean' can be used.
 
-4) Running the simulation
-    > there are two command line argument: debug mode (-debug) and instruction file (-file <file path>).
+4)Running the simulation
+    > there are two command line argument: debug mode (-debug) and instruction file (-file <filepath>).
     > The instruction file should be in Indtruction directory.
     >  Eg: ./lsq -debug 1 -file one_load_store_dep.txt
         debug is set to 1 (by default set to 0). By default, file is set to multiple_store_load.txt

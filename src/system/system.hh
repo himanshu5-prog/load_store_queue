@@ -26,6 +26,8 @@ class System {
         bool allBufferEmpty();
         void setInstructionFile(std :: string f);
         void printStats();
+        void updateLoadStoreQueue();
+        void retireInstruction();
 };
 
 #endif

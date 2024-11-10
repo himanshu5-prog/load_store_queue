@@ -2,8 +2,6 @@
 
 System :: System (){
     cycleCount = 0;
-    //instQ_DS.createInstructionQ();
-    //instQ_DS.createInstructionQFile("Instruction/one_load_store_ind.txt");
     cycleCount = 0;
     maxCycleCount = 100;
     debugMode = false;
@@ -13,7 +11,6 @@ System :: System (){
 }
 
 void System :: run(){
-    //int currentCycleCount;
     for (int currentCycleCount = 0; currentCycleCount < maxCycleCount; ++currentCycleCount){
 
         if (debugMode){
@@ -22,16 +19,25 @@ void System :: run(){
             loadStoreQueue.printAllEntry();
         }
 
+        /*
+        Pipeline:
 
-        loadStoreQueue.retireEntryHead();
-        loadStoreQueue.updateAllLoadEntry();
-        loadStoreQueue.UpdateEntry();
+        issue -> Update LSQ -> retire
+        Issue: Instruction is moved from instruction queue. Once the instruction is in LSQ, it goes into dispatch stage
+        update LSQ: the entries in LSQ are updated (instruction goes through address generation, data calculation, cache access).
+        Retire: Instructions are retired (for load, it means the destination register is updated or store instruction updates the cache)
+        */
+
+        retireInstruction();
+        updateLoadStoreQueue();
         issue();
 
+        // Check if all buffers are empty and simulation can be stopped
         if (allBufferEmpty()){
             stats.totalCycleCount = cycleCount;
             break;
         }
+        //--------------------------------------------------------------
         increment_cycle_count();
 
     }
@@ -98,4 +104,13 @@ void System :: printStats(){
     std :: cout << "####################################\n";
 
     loadStoreQueue.printStats();
+}
+
+void System :: updateLoadStoreQueue(){
+    loadStoreQueue.updateAllLoadEntry();
+    loadStoreQueue.UpdateEntry();
+}
+
+void System :: retireInstruction(){
+    loadStoreQueue.retireEntryHead();
 }

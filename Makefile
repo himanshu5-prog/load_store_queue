@@ -1,6 +1,6 @@
 GCC:= g++ -std=c++11 -Wall
 BIN_DIR:= bin
-CLEAN := rm -r $(BIN_DIR)/
+CLEAN := rm -r $(BIN_DIR)/ *.log
 
 
 $(BIN_DIR):

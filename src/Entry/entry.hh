@@ -12,9 +12,10 @@ struct LSQ_Entry {
     int startCycle;
     int endCycle;
     Stage stage;
-    bool ready;
+    bool ready; // Not using this field now.
 };
 
+//Not using the struct------
 struct Cache_Entry{
     bool valid;
     Opcode opcode;
@@ -27,10 +28,12 @@ struct SimpleCacheEntry {
     int address;
     int data;
 };
+//----------------------------
 
 void printLSQ_Entry( LSQ_Entry e);
 void printCache_Entry ( Cache_Entry e);
 
+//Instruction queue entry
 struct Instruction_Queue_Entry{
     bool valid;
     Opcode opcode;
@@ -38,4 +41,5 @@ struct Instruction_Queue_Entry{
     int data;
     int id;
 };
+//------------------------------
 #endif

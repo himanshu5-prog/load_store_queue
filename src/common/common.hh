@@ -7,7 +7,7 @@
 #include <sstream>
 #define Load_Queue_Size 8
 #define Store_Queue_Size 8
-#define QueueSize 8
+#define QueueSize 8 // Max size of load-store queue
 
 
 enum Opcode {
@@ -16,6 +16,7 @@ enum Opcode {
     STORE
 };
 
+//Currently, not using '_TO_' stages now
 enum Stage {
     NOT_VALID=0,
     //Stages of load instruction

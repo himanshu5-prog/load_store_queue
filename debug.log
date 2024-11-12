@@ -1,0 +1,224 @@
+Got debugMode: 1 from command line argument
+Got fileName: one_load_store_dep.txt from command line argument
+Opened file: Instruction/one_load_store_dep.txt
+System:: run(): Cycle : 0
+ Pre-processing entry: 
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+System:: run(): Cycle : 1
+ Pre-processing entry: 
+-----------------------------------------------------------------
+entry id: 0 Printing LSQ entry
+valid: 1, opcode: STORE, addr: 50, data: 100, age: 0, startCycle: 0, endCycle: 0, stage: ST_DISPATCH
+-----------------------------------------------------------------
+LoadStoreQueue :: UpdateEntry: Found Store entry. Changed stage from ST_DISPATCH to ST_EXECUTE, entry id: 0, cycleCount: 1, endCycleCount: 3
+System:: run(): Cycle : 2
+ Pre-processing entry: 
+-----------------------------------------------------------------
+entry id: 0 Printing LSQ entry
+valid: 1, opcode: STORE, addr: 50, data: 100, age: 0, startCycle: 1, endCycle: 3, stage: ST_EXECUTE
+entry id: 1 Printing LSQ entry
+valid: 1, opcode: LOAD, addr: 50, data: -1, age: 1, startCycle: 1, endCycle: 1, stage: LD_DISPATCH
+-----------------------------------------------------------------
+LoadStoreQueue:: UpdateEntry: Found Load entry. Changed stage from LD_DISPATCH to LD_ADDR_GEN, entry id: 1, cycleaCount: 2, endcycle: 3
+System:: run(): Cycle : 3
+ Pre-processing entry: 
+-----------------------------------------------------------------
+entry id: 0 Printing LSQ entry
+valid: 1, opcode: STORE, addr: 50, data: 100, age: 0, startCycle: 1, endCycle: 3, stage: ST_EXECUTE
+entry id: 1 Printing LSQ entry
+valid: 1, opcode: LOAD, addr: 50, data: -1, age: 1, startCycle: 2, endCycle: 3, stage: LD_ADDR_GEN
+-----------------------------------------------------------------
+LoadStoreQueue:: UpdateEntry: Found Store entry. Changed stage from ST_EXECUTE to ST_RETIRE, entry id: 0, cycleCount: 3, endCycleCount: 23
+LoadStoreQueue:: UpdateEntry: Found Load entry. Changed stage from LD_ADDR_GEN to LD_EXECUTE, entry id: 1, cycleCount: 3, endcycle: 4
+System:: run(): Cycle : 4
+ Pre-processing entry: 
+-----------------------------------------------------------------
+entry id: 0 Printing LSQ entry
+valid: 1, opcode: STORE, addr: 50, data: 100, age: 0, startCycle: 3, endCycle: 23, stage: ST_RETIRE
+entry id: 1 Printing LSQ entry
+valid: 1, opcode: LOAD, addr: 50, data: -1, age: 1, startCycle: 3, endCycle: 4, stage: LD_EXECUTE
+-----------------------------------------------------------------
+LoadStoreQueue :: updateLoadEntry: looking for load entry: 1, found store with matching address: 50 at entry id: 0
+----------------------------------------------------------------------------------------------
+LoadStoreQueue: updateLoadEntry for load entry id: 1, found older storen of id: 0, changing load entry stage from LD_EXECUTE to LD_RETIRE
+Printing LSQ entry
+valid: 1, opcode: LOAD, addr: 50, data: 100, age: 1, startCycle: 4, endCycle: 23, stage: LD_RETIRE
+----------------------------------------------------------------------------------------------
+System:: run(): Cycle : 5
+ Pre-processing entry: 
+-----------------------------------------------------------------
+entry id: 0 Printing LSQ entry
+valid: 1, opcode: STORE, addr: 50, data: 100, age: 0, startCycle: 3, endCycle: 23, stage: ST_RETIRE
+entry id: 1 Printing LSQ entry
+valid: 1, opcode: LOAD, addr: 50, data: 100, age: 1, startCycle: 4, endCycle: 23, stage: LD_RETIRE
+-----------------------------------------------------------------
+System:: run(): Cycle : 6
+ Pre-processing entry: 
+-----------------------------------------------------------------
+entry id: 0 Printing LSQ entry
+valid: 1, opcode: STORE, addr: 50, data: 100, age: 0, startCycle: 3, endCycle: 23, stage: ST_RETIRE
+entry id: 1 Printing LSQ entry
+valid: 1, opcode: LOAD, addr: 50, data: 100, age: 1, startCycle: 4, endCycle: 23, stage: LD_RETIRE
+-----------------------------------------------------------------
+System:: run(): Cycle : 7
+ Pre-processing entry: 
+-----------------------------------------------------------------
+entry id: 0 Printing LSQ entry
+valid: 1, opcode: STORE, addr: 50, data: 100, age: 0, startCycle: 3, endCycle: 23, stage: ST_RETIRE
+entry id: 1 Printing LSQ entry
+valid: 1, opcode: LOAD, addr: 50, data: 100, age: 1, startCycle: 4, endCycle: 23, stage: LD_RETIRE
+-----------------------------------------------------------------
+System:: run(): Cycle : 8
+ Pre-processing entry: 
+-----------------------------------------------------------------
+entry id: 0 Printing LSQ entry
+valid: 1, opcode: STORE, addr: 50, data: 100, age: 0, startCycle: 3, endCycle: 23, stage: ST_RETIRE
+entry id: 1 Printing LSQ entry
+valid: 1, opcode: LOAD, addr: 50, data: 100, age: 1, startCycle: 4, endCycle: 23, stage: LD_RETIRE
+-----------------------------------------------------------------
+System:: run(): Cycle : 9
+ Pre-processing entry: 
+-----------------------------------------------------------------
+entry id: 0 Printing LSQ entry
+valid: 1, opcode: STORE, addr: 50, data: 100, age: 0, startCycle: 3, endCycle: 23, stage: ST_RETIRE
+entry id: 1 Printing LSQ entry
+valid: 1, opcode: LOAD, addr: 50, data: 100, age: 1, startCycle: 4, endCycle: 23, stage: LD_RETIRE
+-----------------------------------------------------------------
+System:: run(): Cycle : 10
+ Pre-processing entry: 
+-----------------------------------------------------------------
+entry id: 0 Printing LSQ entry
+valid: 1, opcode: STORE, addr: 50, data: 100, age: 0, startCycle: 3, endCycle: 23, stage: ST_RETIRE
+entry id: 1 Printing LSQ entry
+valid: 1, opcode: LOAD, addr: 50, data: 100, age: 1, startCycle: 4, endCycle: 23, stage: LD_RETIRE
+-----------------------------------------------------------------
+System:: run(): Cycle : 11
+ Pre-processing entry: 
+-----------------------------------------------------------------
+entry id: 0 Printing LSQ entry
+valid: 1, opcode: STORE, addr: 50, data: 100, age: 0, startCycle: 3, endCycle: 23, stage: ST_RETIRE
+entry id: 1 Printing LSQ entry
+valid: 1, opcode: LOAD, addr: 50, data: 100, age: 1, startCycle: 4, endCycle: 23, stage: LD_RETIRE
+-----------------------------------------------------------------
+System:: run(): Cycle : 12
+ Pre-processing entry: 
+-----------------------------------------------------------------
+entry id: 0 Printing LSQ entry
+valid: 1, opcode: STORE, addr: 50, data: 100, age: 0, startCycle: 3, endCycle: 23, stage: ST_RETIRE
+entry id: 1 Printing LSQ entry
+valid: 1, opcode: LOAD, addr: 50, data: 100, age: 1, startCycle: 4, endCycle: 23, stage: LD_RETIRE
+-----------------------------------------------------------------
+System:: run(): Cycle : 13
+ Pre-processing entry: 
+-----------------------------------------------------------------
+entry id: 0 Printing LSQ entry
+valid: 1, opcode: STORE, addr: 50, data: 100, age: 0, startCycle: 3, endCycle: 23, stage: ST_RETIRE
+entry id: 1 Printing LSQ entry
+valid: 1, opcode: LOAD, addr: 50, data: 100, age: 1, startCycle: 4, endCycle: 23, stage: LD_RETIRE
+-----------------------------------------------------------------
+System:: run(): Cycle : 14
+ Pre-processing entry: 
+-----------------------------------------------------------------
+entry id: 0 Printing LSQ entry
+valid: 1, opcode: STORE, addr: 50, data: 100, age: 0, startCycle: 3, endCycle: 23, stage: ST_RETIRE
+entry id: 1 Printing LSQ entry
+valid: 1, opcode: LOAD, addr: 50, data: 100, age: 1, startCycle: 4, endCycle: 23, stage: LD_RETIRE
+-----------------------------------------------------------------
+System:: run(): Cycle : 15
+ Pre-processing entry: 
+-----------------------------------------------------------------
+entry id: 0 Printing LSQ entry
+valid: 1, opcode: STORE, addr: 50, data: 100, age: 0, startCycle: 3, endCycle: 23, stage: ST_RETIRE
+entry id: 1 Printing LSQ entry
+valid: 1, opcode: LOAD, addr: 50, data: 100, age: 1, startCycle: 4, endCycle: 23, stage: LD_RETIRE
+-----------------------------------------------------------------
+System:: run(): Cycle : 16
+ Pre-processing entry: 
+-----------------------------------------------------------------
+entry id: 0 Printing LSQ entry
+valid: 1, opcode: STORE, addr: 50, data: 100, age: 0, startCycle: 3, endCycle: 23, stage: ST_RETIRE
+entry id: 1 Printing LSQ entry
+valid: 1, opcode: LOAD, addr: 50, data: 100, age: 1, startCycle: 4, endCycle: 23, stage: LD_RETIRE
+-----------------------------------------------------------------
+System:: run(): Cycle : 17
+ Pre-processing entry: 
+-----------------------------------------------------------------
+entry id: 0 Printing LSQ entry
+valid: 1, opcode: STORE, addr: 50, data: 100, age: 0, startCycle: 3, endCycle: 23, stage: ST_RETIRE
+entry id: 1 Printing LSQ entry
+valid: 1, opcode: LOAD, addr: 50, data: 100, age: 1, startCycle: 4, endCycle: 23, stage: LD_RETIRE
+-----------------------------------------------------------------
+System:: run(): Cycle : 18
+ Pre-processing entry: 
+-----------------------------------------------------------------
+entry id: 0 Printing LSQ entry
+valid: 1, opcode: STORE, addr: 50, data: 100, age: 0, startCycle: 3, endCycle: 23, stage: ST_RETIRE
+entry id: 1 Printing LSQ entry
+valid: 1, opcode: LOAD, addr: 50, data: 100, age: 1, startCycle: 4, endCycle: 23, stage: LD_RETIRE
+-----------------------------------------------------------------
+System:: run(): Cycle : 19
+ Pre-processing entry: 
+-----------------------------------------------------------------
+entry id: 0 Printing LSQ entry
+valid: 1, opcode: STORE, addr: 50, data: 100, age: 0, startCycle: 3, endCycle: 23, stage: ST_RETIRE
+entry id: 1 Printing LSQ entry
+valid: 1, opcode: LOAD, addr: 50, data: 100, age: 1, startCycle: 4, endCycle: 23, stage: LD_RETIRE
+-----------------------------------------------------------------
+System:: run(): Cycle : 20
+ Pre-processing entry: 
+-----------------------------------------------------------------
+entry id: 0 Printing LSQ entry
+valid: 1, opcode: STORE, addr: 50, data: 100, age: 0, startCycle: 3, endCycle: 23, stage: ST_RETIRE
+entry id: 1 Printing LSQ entry
+valid: 1, opcode: LOAD, addr: 50, data: 100, age: 1, startCycle: 4, endCycle: 23, stage: LD_RETIRE
+-----------------------------------------------------------------
+System:: run(): Cycle : 21
+ Pre-processing entry: 
+-----------------------------------------------------------------
+entry id: 0 Printing LSQ entry
+valid: 1, opcode: STORE, addr: 50, data: 100, age: 0, startCycle: 3, endCycle: 23, stage: ST_RETIRE
+entry id: 1 Printing LSQ entry
+valid: 1, opcode: LOAD, addr: 50, data: 100, age: 1, startCycle: 4, endCycle: 23, stage: LD_RETIRE
+-----------------------------------------------------------------
+System:: run(): Cycle : 22
+ Pre-processing entry: 
+-----------------------------------------------------------------
+entry id: 0 Printing LSQ entry
+valid: 1, opcode: STORE, addr: 50, data: 100, age: 0, startCycle: 3, endCycle: 23, stage: ST_RETIRE
+entry id: 1 Printing LSQ entry
+valid: 1, opcode: LOAD, addr: 50, data: 100, age: 1, startCycle: 4, endCycle: 23, stage: LD_RETIRE
+-----------------------------------------------------------------
+System:: run(): Cycle : 23
+ Pre-processing entry: 
+-----------------------------------------------------------------
+entry id: 0 Printing LSQ entry
+valid: 1, opcode: STORE, addr: 50, data: 100, age: 0, startCycle: 3, endCycle: 23, stage: ST_RETIRE
+entry id: 1 Printing LSQ entry
+valid: 1, opcode: LOAD, addr: 50, data: 100, age: 1, startCycle: 4, endCycle: 23, stage: LD_RETIRE
+-----------------------------------------------------------------
+Retiring the entry at cycle: 23
+Printing LSQ entry
+valid: 1, opcode: STORE, addr: 50, data: 100, age: 0, startCycle: 3, endCycle: 23, stage: ST_RETIRE
+System:: run(): Cycle : 24
+ Pre-processing entry: 
+-----------------------------------------------------------------
+entry id: 0 Printing LSQ entry
+valid: 1, opcode: LOAD, addr: 50, data: 100, age: 1, startCycle: 4, endCycle: 23, stage: LD_RETIRE
+-----------------------------------------------------------------
+Retiring the entry at cycle: 24
+Printing LSQ entry
+valid: 1, opcode: LOAD, addr: 50, data: 100, age: 1, startCycle: 4, endCycle: 23, stage: LD_RETIRE
+All buffers empty at cycle: 24
+####### System Stats #############
+load instruction count: 1
+store instruction count: 1
+Total cycle count: 24
+####################################
+######## Common Queue stats##########
+Load memory access: 0
+Store memory access: 1
+Retired load count: 1
+Retired store count: 1
+Store to load forwarding count: 1
+###############################################

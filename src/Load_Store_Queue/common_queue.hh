@@ -22,15 +22,24 @@ class CommonQueue{
         void setDebugMode();
         bool canAddToEntry();
 
-        void UpdateEntry();
         SimpleCacheEntry getRetireEntry();
 
         void incrementCycleCount();
+
+        //Function related to entries in queue
+
+        // Function to update entries stages
+        void UpdateEntry();
         int updateLoadEntry(int load_entry_id, int addr);
         void updateAllLoadEntry();
+
+        //Check if older store is present with matching address for a load
         bool foundPrevStore(int id, int addr);
 
+        //Retire instruction at the front of buffer
         void retireEntryHead();
+        
+
         void printAllEntry();
         void printStats();
 

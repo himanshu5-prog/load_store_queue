@@ -27,9 +27,14 @@ void System :: run(){
         update LSQ: the entries in LSQ are updated (instruction goes through address generation, data calculation, cache access).
         Retire: Instructions are retired (for load, it means the destination register is updated or store instruction updates the cache)
         */
-
+       
+        // Retire instructions in load store queue
         retireInstruction();
+
+        // Update stages in load store queue
         updateLoadStoreQueue();
+
+        // Issue instruction from instruction queue
         issue();
 
         // Check if all buffers are empty and simulation can be stopped
@@ -37,7 +42,8 @@ void System :: run(){
             stats.totalCycleCount = cycleCount;
             break;
         }
-        //--------------------------------------------------------------
+        
+        //Update cycle count
         increment_cycle_count();
 
     }
@@ -50,17 +56,26 @@ void System :: issue (){
         instEntry = instQ_DS.getEntry();
         assert(instEntry.valid);
 
+        //Instruction can be added to load-Store queue if there is space available
         if (loadStoreQueue.canAddToEntry()){
             if (instEntry.opcode == LOAD){
                 // Adding entry to load queue
+
+                // Updating stats
                 stats.loadInstructionCount += 1;
                 loadStoreQueue.addToQueue(instEntry.address, instEntry.data, instEntry.id ,LOAD);
+
+                // Removing instruction from instQ
                 instQ_DS.popInstQ();
 
             } else if (instEntry.opcode == STORE){
                 //Adding entry to store queue
+
+                //Updating stats
                 stats.storeInstructionCount += 1;
                 loadStoreQueue.addToQueue(instEntry.address, instEntry.data, instEntry.id, STORE);
+
+                // Removing instruction from instQ
                 instQ_DS.popInstQ();
             }
         } else {

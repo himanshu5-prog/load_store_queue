@@ -73,10 +73,10 @@ void CommonQueue :: incrementCycleCount(){
 
 void CommonQueue :: UpdateEntry(){
     // This function update the entry till Retire for Store
-    // For Load, it is updated till Add
+    // For Load, it is updated till Addr gen
 
-    // Store stages: Dispatch -> Execute -> Retire (Ready to retire)
-    // Load stage:   Dispatch -> Addr Gen -> Execute -> Retire (Ready to retire)
+    // Store stages: Dispatch -> Execute (Ready to execute) -> Retire (Ready to retire)
+    // Load stage:   Dispatch -> Addr Gen (Ready to execute) )-> Execute -> Retire (Ready to retire)
     std :: deque <LSQ_Entry> :: iterator itr;
     Stage prev_stage;
     int entry_id = 0;
